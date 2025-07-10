@@ -1,17 +1,19 @@
 # Notion MCP Server
 
-> [!NOTE] 
-> 
+[한국어 문서](README.ko.md)
+
+> [!NOTE]
+>
 > We’ve introduced **Notion MCP** (Beta), a remote MCP server with the following improvements:
 > - Easy installation via standard OAuth. No need to fiddle with JSON or API token anymore.
 > - Powerful tools tailored to AI agents. These tools are designed with optimized token consumption in mind.
-> 
+>
 > Learn more and try it out [here](https://notion.notion.site/Beta-Overview-Notion-MCP-206efdeead058060a59bf2c14202bd0a)
 
 
 ![notion-mcp-sm](https://github.com/user-attachments/assets/6c07003c-8455-4636-b298-d60ffdf46cd8)
 
-This project implements an [MCP server](https://spec.modelcontextprotocol.io/) for the [Notion API](https://developers.notion.com/reference/intro). 
+This project implements an [MCP server](https://spec.modelcontextprotocol.io/) for the [Notion API](https://developers.notion.com/reference/intro).
 
 ![mcp-demo](https://github.com/user-attachments/assets/e3ff90a7-7801-48a9-b807-f7dd47f0d3d6)
 
@@ -22,7 +24,7 @@ Go to [https://www.notion.so/profile/integrations](https://www.notion.so/profile
 
 ![Creating a Notion Integration token](docs/images/integrations-creation.png)
 
-While we limit the scope of Notion API's exposed (for example, you will not be able to delete databases via MCP), there is a non-zero risk to workspace data by exposing it to LLMs. Security-conscious users may want to further configure the Integration's _Capabilities_. 
+While we limit the scope of Notion API's exposed (for example, you will not be able to delete databases via MCP), there is a non-zero risk to workspace data by exposing it to LLMs. Security-conscious users may want to further configure the Integration's _Capabilities_.
 
 For example, you can create a read-only integration token by giving only "Read content" access from the "Configuration" tab:
 
@@ -36,7 +38,7 @@ To do this, visit the **Access** tab in your internal integration settings. Edit
 
 ![Edit integration access](docs/images/page-access-edit.png)
 
-Alternatively, you can grant page access individually. You'll need to visit the target page, and click on the 3 dots, and select "Connect to integration". 
+Alternatively, you can grant page access individually. You'll need to visit the target page, and click on the 3 dots, and select "Connect to integration".
 
 ![Adding Integration Token to Notion Connections](docs/images/connections.png)
 
