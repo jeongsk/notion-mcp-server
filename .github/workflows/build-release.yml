@@ -1,6 +1,8 @@
 name: Build and Release dxt
 
 on:
+  workflow_dispatch:
+
   push:
     tags:
       - 'v*'
@@ -23,6 +25,9 @@ jobs:
 
     - name: Install dependencies
       run: npm ci
+
+    - name: Install dxt CLI
+      run: npm install -g @anthropic-ai/dxt
 
     - name: Build package
       run: npm run build:dxt  # tsc 빌드 + dxt 패키징
