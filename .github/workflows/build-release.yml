@@ -1,0 +1,53 @@
+name: Build and Release dxt
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write  # 릴리즈 생성 및 아티팩트 업로드 권한
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js 20
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build package
+      run: npm run build:dxt  # tsc 빌드 + dxt 패키징
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: notion-mcp-server
+        path: notion-mcp-server.dxt  # dxt pack 생성 파일
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # 릴리즈 생성 권한
+
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: notion-mcp-server
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          notion-mcp-server.dxt
+        draft: false
