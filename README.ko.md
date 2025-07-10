@@ -1,11 +1,11 @@
 # Notion MCP 서버
 
-> [!NOTE] 
-> 
+> [!NOTE]
+>
 > 원격 MCP 서버인 **Notion MCP**(베타)가 다음과 같은 개선 사항과 함께 도입되었습니다:
 > - 표준 OAuth를 통한 간편한 설치. 더 이상 JSON이나 API 토큰을 직접 다룰 필요가 없습니다.
 > - AI 에이전트에 최적화된 강력한 도구들. 이 도구들은 토큰 소비를 최적화하도록 설계되었습니다.
-> 
+>
 > [여기](https://notion.notion.site/Beta-Overview-Notion-MCP-206efdeead058060a59bf2c14202bd0a)에서 더 자세히 알아보고 사용해 보세요.
 
 
@@ -148,6 +148,27 @@ docker-compose build
 
 ![개발자 포털의 구성 탭에서 통합 토큰 복사](https://github.com/user-attachments/assets/67b44536-5333-49fa-809c-59581bf5370a)
 
+
+#### 4. 데스크톱 확장 설치 (DXT)
+
+Claude Desktop의 데스크톱 확장(DXT) 기능을 사용하면 브라우저 확장처럼 쉽게 MCP 서버를 설치할 수 있습니다.
+
+**설치 단계:**
+
+1. Claude Desktop 내에서 **설정 > 확장**으로 이동
+2. 확장 디렉토리를 탐색하거나 `.dxt` 파일에서 설치
+3. 원하는 확장에서 **"설치"** 클릭
+4. 사용자 친화적인 인터페이스를 통해 필요한 설정(API 키 등) 구성
+5. 확장이 대화에서 자동으로 사용 가능해집니다
+
+**구성 설정:**
+- API 키와 같은 민감한 정보는 운영 체제의 보안 저장소(macOS의 Keychain, Windows의 Credential Manager)에 자동으로 암호화되어 저장됩니다
+- 모든 필수 구성 필드를 완료해야 확장이 정상적으로 작동합니다
+
+**문제 해결:**
+- 확장이 설치되지 않는 경우: Claude Desktop의 최신 버전 확인, 충분한 디스크 공간 확보
+- 도구를 사용할 수 없는 경우: Claude Desktop 재시작, 구성 설정 및 API 키 확인
+- 권한 오류: macOS에서는 시스템 환경설정 > 보안 및 개인 정보 보호 확인
 
 #### Smithery를 통한 설치
 
