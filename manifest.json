@@ -1,0 +1,174 @@
+{
+  "dxt_version": "0.1",
+  "name": "notion-mcp-server",
+  "display_name": "Notion MCP Server",
+  "version": "1.8.1",
+  "description": "Official MCP server for Notion API integration",
+  "long_description": "This extension provides seamless integration with Notion's API through the Model Context Protocol (MCP). It enables AI assistants to read, write, and manage Notion pages, databases, and blocks directly. Perfect for automating Notion workflows and enhancing productivity.",
+  "author": {
+    "name": "Notion Labs",
+    "email": "developers@makenotion.com",
+    "url": "https://developers.notion.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/makenotion/notion-mcp-server"
+  },
+  "homepage": "https://github.com/makenotion/notion-mcp-server#readme",
+  "license": "MIT",
+  "keywords": [
+    "notion",
+    "api",
+    "mcp",
+    "server",
+    "productivity",
+    "database",
+    "pages",
+    "blocks"
+  ],
+  "icon": "icon.png",
+  "server": {
+    "type": "node",
+    "entry_point": "bin/cli.mjs",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/bin/cli.mjs"
+      ],
+      "env": {
+        "OPENAPI_MCP_HEADERS": "{\"Authorization\": \"Bearer ${user_config.notion_api_key}\", \"Notion-Version\": \"2022-06-28\"}",
+        "BASE_URL": "${user_config.base_url}"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "notion-search",
+      "description": "Search for pages and databases in Notion workspace"
+    },
+    {
+      "name": "notion-pages-retrieve",
+      "description": "Retrieve a specific page by its ID"
+    },
+    {
+      "name": "notion-pages-create",
+      "description": "Create a new page in Notion"
+    },
+    {
+      "name": "notion-pages-update",
+      "description": "Update properties of an existing page"
+    },
+    {
+      "name": "notion-blocks-children-list",
+      "description": "List child blocks of a page or block"
+    },
+    {
+      "name": "notion-blocks-children-append",
+      "description": "Append new blocks to a page or block"
+    },
+    {
+      "name": "notion-blocks-retrieve",
+      "description": "Retrieve a specific block by its ID"
+    },
+    {
+      "name": "notion-blocks-update",
+      "description": "Update an existing block"
+    },
+    {
+      "name": "notion-blocks-delete",
+      "description": "Delete a block"
+    },
+    {
+      "name": "notion-databases-query",
+      "description": "Query a database and retrieve pages that match filters"
+    },
+    {
+      "name": "notion-databases-retrieve",
+      "description": "Retrieve database information and schema"
+    },
+    {
+      "name": "notion-databases-create",
+      "description": "Create a new database"
+    },
+    {
+      "name": "notion-databases-update",
+      "description": "Update database properties and schema"
+    },
+    {
+      "name": "notion-users-list",
+      "description": "List all users in the workspace"
+    },
+    {
+      "name": "notion-users-retrieve",
+      "description": "Retrieve information about a specific user"
+    },
+    {
+      "name": "notion-users-me",
+      "description": "Retrieve information about the current user"
+    },
+    {
+      "name": "notion-comments-list",
+      "description": "List comments on a page or block"
+    },
+    {
+      "name": "notion-comments-create",
+      "description": "Create a new comment on a page or block"
+    }
+  ],
+  "user_config": {
+    "notion_api_key": {
+      "type": "string",
+      "title": "Notion API Key",
+      "description": "Your Notion integration API key. Create one at https://www.notion.so/my-integrations",
+      "sensitive": true,
+      "required": true,
+      "placeholder": "secret_..."
+    },
+    "base_url": {
+      "type": "string",
+      "title": "Notion API Base URL",
+      "description": "Base URL for Notion API (usually https://api.notion.com)",
+      "default": "https://api.notion.com",
+      "required": false
+    }
+  },
+  "compatibility": {
+    "claude_desktop": ">=0.10.0",
+    "platforms": [
+      "darwin",
+      "win32",
+      "linux"
+    ],
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  },
+  "permissions": {
+    "network": {
+      "domains": [
+        "api.notion.com"
+      ],
+      "description": "Required to communicate with Notion API"
+    }
+  },
+  "build": {
+    "include": [
+      "bin/",
+      "scripts/notion-openapi.json",
+      "package.json",
+      "README.md",
+      "LICENSE"
+    ],
+    "exclude": [
+      "src/",
+      "test/",
+      "docs/",
+      "node_modules/@types/",
+      "*.ts",
+      "*.test.*",
+      ".git*",
+      "docker*",
+      "tsconfig.json"
+    ]
+  }
+}
